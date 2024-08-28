@@ -1,0 +1,63 @@
+# Ignore node_modules directory
+node_modules/
+
+# Ignore logs
+logs/
+*.log
+npm-debug.log*
+
+# Ignore environment variable files
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Ignore Docker-related files
+docker-compose.override.yml
+docker-compose.override.yaml
+docker-compose.*.yml
+docker-compose.*.yaml
+.dockerignore
+
+# Ignore build directories
+dist/
+build/
+
+# Ignore dependency directories
+node_modules/
+bower_components/
+
+# Ignore IDE specific files
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# Ignore OS generated files
+.DS_Store
+Thumbs.db
+
+# Ignore coverage reports
+coverage/
+
+# Ignore temporary files
+*.tmp
+*.temp
+*.swp
+*.swo
+*.bak
+*.orig
+
+# Ignore compiled files
+*.out
+*.class
+*.o
+*.so
+
+# Ignore Nginx configuration
+conf/nginx.conf
+
+# Ignore SSL certificates and keys
+*.crt
+*.key
