@@ -61,3 +61,11 @@ conf/nginx.conf
 # Ignore SSL certificates and keys
 *.crt
 *.key
+srcs/.db/aria_log_control
+srcs/.db/aria_log.00000001
+srcs/.db/ib_buffer_pool
+srcs/.db/ib_logfile0
+srcs/.db/ibdata1
+srcs/.db/ibtmp1
+srcs/.db/multi-master.info
+srcs/.db/mysql_upgrade_info
