@@ -6,4 +6,4 @@ RUN apt-get install mariadb-server mariadb-client -y
 COPY launch.sh /launch.sh
 RUN chmod 777 /launch.sh
 
-ENTRYPOINT ["bash", "-c", "/launch.sh"]
+CMD ["bash", "-c", "/launch.sh"]

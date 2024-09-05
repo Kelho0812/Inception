@@ -1,28 +1,26 @@
 
 up:
-	docker compose --file srcs/docker-compose.yml up --build -d
+	docker compose --file srcs/docker-compose.yaml up --build -d
 
-re:
-	docker compose --file srcs/docker-compose.yml down
-	docker compose --file srcs/docker-compose.yml up --build -d
+re: fclean up
 
 stop:
-	docker compose --file srcs/docker-compose.yml stop
+	docker compose --file srcs/docker-compose.yaml stop
 
 down:
-	docker compose --file srcs/docker-compose.yml down
+	docker compose --file srcs/docker-compose.yaml down
 
 logs:
-	docker compose --file srcs/docker-compose.yml logs
+	docker compose --file srcs/docker-compose.yaml logs
 
 ps:
-	docker compose --file srcs/docker-compose.yml ps
+	docker compose --file srcs/docker-compose.yaml ps
 
 build:
-	docker compose --file srcs/docker-compose.yml build
+	docker compose --file srcs/docker-compose.yaml build
 
 restart:
-	docker compose --file srcs/docker-compose.yml restart
+	docker compose --file srcs/docker-compose.yaml restart
 
 volumes:
 	@if [ ! -d "home/jorteixe/data/mariadb" ] && [ ! -d "home/jorteixe/data/wordpress;" ]; then \
@@ -30,3 +28,8 @@ volumes:
 
 clean:
 	docker system prune -a
+
+volume_clean:
+	docker volume prune -a
+
+fclean: down clean volume_clean
