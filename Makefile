@@ -27,3 +27,6 @@ restart:
 volumes:
 	@if [ ! -d "home/jorteixe/data/mariadb" ] && [ ! -d "home/jorteixe/data/wordpress;" ]; then \
 	mkdir -p home/jorteixe/data/mariadb && mkdir -p home/jorteixe/data/wordpress; fi
+
+clean:
+	docker system prune -a
