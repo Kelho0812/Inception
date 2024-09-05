@@ -1,7 +1,9 @@
-FROM debian:bullseye 
-RUN apt update && apt upgrade -y && apt install -y mariadb-server
-COPY conf/50-server.cnf /etc/mysql/mariadb.conf.d/.
-RUN mkdir /run/mysqld
-COPY tools/mariadb-run.sh .
-RUN chmod +x ./mariadb-run.sh
-ENTRYPOINT ["./mariadb-run.sh"]
+FROM debian:bullseye
+RUN apt-get update -y
+RUN apt-get upgrade -y
+RUN apt-get install mariadb-server mariadb-client -y
+
+COPY launch.sh /launch.sh
+RUN chmod 777 launch.sh
+
+ENTRYPOINT ["bash",  "/launch.sh"]
