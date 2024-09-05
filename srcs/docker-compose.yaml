@@ -1,5 +1,6 @@
 services:
   nginx:
+    container_name: nginx
     build:
       context: ./requirements/nginx/
     ports:
@@ -9,6 +10,7 @@ services:
       - inception
 
   mariadb:
+    container_name: mariadb
     build:
       context: ./requirements/mariadb/
     env_file:
@@ -17,6 +19,10 @@ services:
       - mariadb_data:/var/lib/mysql
     networks:
       - inception
+
+  wordpress:
+    build: requirements/wordpress/.
+    container_name: wordpress
 
 volumes:
   mariadb_data:
