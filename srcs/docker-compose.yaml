@@ -21,11 +21,22 @@ services:
       - inception
 
   wordpress:
-    build: requirements/wordpress/.
     container_name: wordpress
+    build:
+      context: requirements/wordpress/.
+    networks:
+      - inception
+    env_file:
+      - .env
 
 volumes:
   mariadb_data:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ./home/jorteixe/data/mariadb
+
 
 networks:
   inception:
