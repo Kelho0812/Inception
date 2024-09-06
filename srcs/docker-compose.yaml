@@ -1,43 +1,56 @@
 services:
   nginx:
+    build: 
+      context: requirements/nginx/.
     container_name: nginx
-    build:
-      context: ./requirements/nginx/
+    restart: on-failure
+    depends_on:
+      - wordpress
+    networks:
+      - inception
     ports:
-      - "80:80"
       - "443:443"
-    networks:
-      - inception
-
-  mariadb:
-    container_name: mariadb
-    build:
-      context: ./requirements/mariadb/
-    env_file:
-      - .env
     volumes:
-      - mariadb_data:/var/lib/mysql
-    networks:
-      - inception
-
+      - v_web:/var/www/html
   wordpress:
+    build: requirements/wordpress/.
     container_name: wordpress
-    build:
-      context: requirements/wordpress/.
-    networks:
-      - inception
+    restart: on-failure
     env_file:
       - .env
-
+    depends_on:
+      - mariadb
+    networks:
+      - inception
+    expose:
+      - "9000"
+    volumes:
+      - v_web:/var/www/html
+  mariadb:
+    build: requirements/mariadb/.
+    container_name: mariadb
+    restart: on-failure
+    env_file:
+      - .env
+    networks:
+      - inception
+    expose:
+      - "3306"
+    volumes:
+      - v_db:/var/lib/mysql
 volumes:
-  mariadb_data:
+  v_web:
     driver: local
     driver_opts:
       type: none
       o: bind
-      device: ./home/jorteixe/data/mariadb
-
-
+      device: /home/jorteixe/data/wordpress
+  v_db:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: /home/jorteixe/data/mariadb
 networks:
   inception:
     driver: bridge

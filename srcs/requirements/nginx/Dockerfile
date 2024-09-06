@@ -8,9 +8,8 @@ RUN mkdir -p /etc/nginx/ssl && \
     -out /etc/nginx/ssl/nginx.crt \
     -subj "/CN=localhost"
 
-COPY ./conf/nginx.conf /etc/nginx/nginx.conf
-COPY ./conf/nginx.conf /etc/nginx/sites-available/default
-COPY ./index.html /usr/share/nginx/html/index.html
+COPY ./config/nginx.conf /etc/nginx/nginx.conf
+COPY ./config/nginx.conf /etc/nginx/sites-available/default
 
 EXPOSE 80
 EXPOSE 443

@@ -1,8 +1,10 @@
 
-up:
-	docker compose --file srcs/docker-compose.yaml up --build -d
+up: build
+	docker compose --file srcs/docker-compose.yaml up -d
 
-re: fclean up
+re: down build up
+
+fullre: fclean up
 
 stop:
 	docker compose --file srcs/docker-compose.yaml stop
@@ -16,16 +18,16 @@ logs:
 ps:
 	docker compose --file srcs/docker-compose.yaml ps
 
-build:
-	docker compose --file srcs/docker-compose.yaml build
-
 restart:
 	docker compose --file srcs/docker-compose.yaml restart
 
 volumes:
-	@if [ ! -d "home/jorteixe/data/mariadb" ] && [ ! -d "home/jorteixe/data/wordpress;" ]; then \
-	mkdir -p home/jorteixe/data/mariadb && mkdir -p home/jorteixe/data/wordpress; fi
+	@if [ ! -d "/home/jorteixe/data/mariadb" ] && [ ! -d "/home/jorteixe/data/wordpress;" ]; then \
+	mkdir -p /home/jorteixe/data/mariadb && mkdir -p /home/jorteixe/data/wordpress; fi
 
+build: volumes
+	docker compose --file srcs/docker-compose.yaml build
+	
 clean:
 	docker system prune -a
 
