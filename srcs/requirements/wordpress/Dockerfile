@@ -7,4 +7,6 @@ RUN mkdir -p /run/php && chown -R www-data:www-data /run/php
 COPY config/www.conf /etc/php/7.4/fpm/pool.d/.
 COPY ./wordpress-setup.sh .
 RUN chmod +x wordpress-setup.sh
+RUN mkdir -p /var/www/html && chown -R www-data:www-data /var/www/html
+RUN mkdir -p /var/www/html/wp-content/uploads && chown -R www-data:www-data /var/www/html/wp-content/uploads
 ENTRYPOINT ["./wordpress-setup.sh"]
